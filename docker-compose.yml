@@ -1,43 +1,48 @@
 
 services:
+  nats:
+    image: nats:latest
+    ports:
+      - "4222:4222"
+
 
   my-postgres:
     image: postgres:15
-    container_name: nuts_postgres_assignment
+    container_name: nats_postgres_assignment
     environment:
-      POSTGRES_DB: nutsdb
+      POSTGRES_DB: natsdb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5433:5432"
     networks:
-      - nuts-network
+      - nats-network
 
-  nuts-service:
+  nats-service:
     # directory that contains your Dockerfile
     build: .
-    container_name: nuts_service
+    container_name: nats_service
     ports:
       - "8081:8081"  # Adjust if needed
     networks:
-      - nuts-network
+      - nats-network
     depends_on:
       - my-postgres
 
-  nuts-subscriber-app:
+  nats-subscriber-app:
     build: .
-    container_name: nuts_subscriber_app
+    container_name: nats_subscriber_app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://my-postgres:5432/nutsdb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://my-postgres:5432/natsdb
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     ports:
       - "8080:8080"
     networks:
-      - nuts-network
+      - nats-network
     depends_on:
-      - nuts-service
+      - nats-service
 
 networks:
-  nuts-network:
+  nats-network:
     driver: bridge

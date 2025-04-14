@@ -1,4 +1,4 @@
-package com.example.nutssubscriber;
+package com.example.natssubscriber;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-public class NutsSubscriberApplication {
+public class NatsSubscriberApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NutsSubscriberApplication.class, args);
+        SpringApplication.run(NatsSubscriberApplication.class, args);
     }
 
 }

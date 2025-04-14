@@ -1,4 +1,4 @@
-package com.example.nutssubscriber.data;
+package com.example.natssubscriber.data;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
-public class NutsMessage {
+public class NatsMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

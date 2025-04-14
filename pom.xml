@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>nuts</artifactId>
+    <artifactId>nats</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>software-engineering-hw1</name>
     <description>software-engineering-hw1</description>
@@ -63,6 +63,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.nats</groupId>
+            <artifactId>jnats</artifactId>
+            <version>2.16.12</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -1,11 +1,11 @@
-# Nuts Subscriber Application
+# Nats Subscriber Application
 
-This application is built using a 3-layer architecture and demonstrates a subscriber to a Nuts service. The application processes incoming messages and persists them to a PostgreSQL database.
+This application is built using a 3-layer architecture and demonstrates a subscriber to a Nats service. The application processes incoming messages and persists them to a PostgreSQL database.
 
 ## Architecture Overview
 
 1. **API Layer**
-    - Responsible for subscribing to the Nuts service.
+    - Responsible for subscribing to the Nats service.
     - Uses a scheduled task (every 5 seconds) to simulate receiving messages.
     - Forwards messages to the Service layer.
 
@@ -28,7 +28,7 @@ This application is built using a 3-layer architecture and demonstrates a subscr
 ### Without Docker
 
 1. **PostgreSQL Setup**
-    - Install PostgreSQL and create a database named `nutsdb`.
+    - Install PostgreSQL and create a database named `natsdb`.
     - Configure the username/password as `postgres/postgres` or adjust in `src/main/resources/application.properties`.
 
 2. **Run the Application**
