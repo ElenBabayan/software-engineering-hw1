@@ -1,0 +1,47 @@
+# Remove or comment out: version: '3.8' (since Compose warns it’s obsolete)
+
+services:
+
+  my-postgres:
+    image: postgres:15
+    container_name: nuts_postgres_assignment
+    environment:
+      POSTGRES_DB: nutsdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - nuts-network
+
+  nuts-service:
+    # directory that contains your Dockerfile
+    build: .
+    container_name: nuts_service
+    # Add any environment variables needed by the Nuts service
+    # e.g. NUTS_SERVICE_CONFIG=somevalue
+    ports:
+      - "8081:8081"  # Adjust if needed
+    networks:
+      - nuts-network
+    depends_on:
+      - my-postgres
+
+  nuts-subscriber-app:
+    build: .
+    container_name: nuts_subscriber_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://my-postgres:5432/nutsdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      # If the Nuts service address is needed, e.g. NUTS_SERVICE_URL=http://nuts-service:8081
+    ports:
+      - "8080:8080"
+    networks:
+      - nuts-network
+    depends_on:
+      - nuts-service
+
+networks:
+  nuts-network:
+    driver: bridge
